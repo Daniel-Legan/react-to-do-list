@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App.js';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-// Provider allows us to use redux within our react app
+// Provider allows us to use redux within react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
@@ -14,6 +14,7 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_LIST', fetchList);
+    yield takeEvery('ADD_DESCRIPTION', addDescription);
 }
 
 function* fetchList() {
@@ -27,10 +28,21 @@ function* fetchList() {
     }
 }
 
+function* addDescription(action) {
+    try {
+        yield axios.post('/api/list', action.payload);
+
+        yield put({ type: 'FETCH_LIST' });
+
+    } catch {
+        console.log('post error');
+    }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-// Used to store movies returned from the server
+// Used to store the list returned from the server
 const list = (state = [], action) => {
     switch (action.type) {
         case 'SET_LIST':

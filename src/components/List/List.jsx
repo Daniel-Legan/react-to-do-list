@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ListItem from '../ListItem/ListItem';
 
 function List() {
     const dispatch = useDispatch();
@@ -15,9 +16,7 @@ function List() {
             <section>
                 {list.map(item => {
                     return (
-                        <div key={item.id}>
-                            <p>{item.description}</p>
-                        </div>
+                        <ListItem key={item.id} item={item} />
                     )
                 })}
             </section>
