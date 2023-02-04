@@ -39,7 +39,8 @@ function ListItem({ item }) {
                         value={editedItem.description}
                         onChange={handleChange}
                     />
-                    <button onClick={handleSave}>Save</button>
+                    <button
+                        onClick={handleSave}>Save</button>
                 </>
             ) : (
                 <>

@@ -29,7 +29,7 @@ function Form() {
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
             />
-            <button>add</button>
+            <button>Add</button>
         </form>
     )
 }
