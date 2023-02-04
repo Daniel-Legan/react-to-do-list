@@ -44,4 +44,18 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+  const SQLText = `UPDATE list SET description = $1 WHERE id = $2;`;
+
+  pool
+    .query(SQLText, [req.body.description, req.params.id])
+    .then(() =>
+      res.sendStatus(201)
+    )
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    })
+})
+
 module.exports = router;

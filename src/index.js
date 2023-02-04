@@ -16,6 +16,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_LIST', fetchList);
     yield takeEvery('ADD_DESCRIPTION', addDescription);
     yield takeEvery('DELETE_ITEM', deleteItem);
+    yield takeEvery('EDIT_DESCRIPTION', editDescription);
 }
 
 function* fetchList() {
@@ -48,6 +49,17 @@ function* deleteItem(action) {
 
     } catch (err) {
         console.log('delete error', err);
+    }
+}
+
+function* editDescription(action) {
+    try {
+        yield axios.put(`/api/list/${action.payload.id}`, action.payload);
+
+        yield put({ type: 'FETCH_LIST' });
+
+    } catch (err) {
+        console.log('put error', err);
     }
 }
 
