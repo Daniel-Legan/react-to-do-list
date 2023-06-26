@@ -5,6 +5,7 @@ import ListItem from '../ListItem/ListItem';
 function List() {
     const dispatch = useDispatch();
     const list = useSelector((store) => store.list);
+    const searchTerm = useSelector((store) => store.searchTerm);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_LIST' });

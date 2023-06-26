@@ -2,6 +2,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import List from '../List/List';
 import Form from '../Form/Form';
+import SearchBar from '../SearchBar/SearchBar';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Router>
         <Route path="/" exact>
           <Form />
+          <SearchBar />
           <List />
         </Route>
       </Router>
